@@ -4,11 +4,15 @@ import com.bilgeadam.rentacar.enums.CarBodyType;
 import com.bilgeadam.rentacar.enums.Color;
 import com.bilgeadam.rentacar.enums.FuelType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+
 
 @Data
 @Builder
@@ -41,6 +45,10 @@ public class Car {
     @Column(name = "color")
     @Enumerated(EnumType.STRING)
     private Color color;
+
+
+   @ManyToMany(fetch = FetchType.LAZY)
+    private List<Rent> rents;
 
 
 }
